@@ -20,10 +20,7 @@ export const GalleryBlock: React.FC<GalleryBlockProps> = ({ id, items, columns, 
   return (
     <>
       {customCSS && <style dangerouslySetInnerHTML={{ __html: customCSS }} />}
-      <section
-        id={sectionId}
-        className={`relative w-full ${presetClass || 'bg-transparent'}`}
-      >
+      <section id={sectionId} className={`relative w-full ${presetClass || 'bg-transparent'}`}>
         {isImage && typeof background.image === 'object' && (
           <Media
             resource={background.image}
