@@ -14,6 +14,7 @@ import { GridLayoutBlock } from '@/blocks/GridLayout/Component'
 import { HomeBlock01Block } from '@/blocks/HomeBlock01/Component'
 import { HomeBlock02Block } from '@/blocks/HomeBlock02/Component'
 import { HomeBlock03Block } from '@/blocks/HomeBlock03/Component'
+import { AboutBlock01Block } from '@/blocks/AboutBlock01/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -28,6 +29,7 @@ const blockComponents = {
   homeBlock01: HomeBlock01Block,
   homeBlock02: HomeBlock02Block,
   homeBlock03: HomeBlock03Block,
+  aboutBlock01: AboutBlock01Block,
 }
 
 export const RenderBlocks: React.FC<{

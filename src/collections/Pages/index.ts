@@ -14,6 +14,7 @@ import { GridLayout } from '../../blocks/GridLayout/config'
 import { HomeBlock01 } from '../../blocks/HomeBlock01/config'
 import { HomeBlock02 } from '../../blocks/HomeBlock02/config'
 import { HomeBlock03 } from '../../blocks/HomeBlock03/config'
+import { AboutBlock01 } from '../../blocks/AboutBlock01/config'
 import { hero } from '@/heros/config'
 import { slugField } from 'payload'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -92,6 +93,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 HomeBlock01,
                 HomeBlock02,
                 HomeBlock03,
+                AboutBlock01,
               ],
               required: true,
               admin: {

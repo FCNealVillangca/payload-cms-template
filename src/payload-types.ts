@@ -214,6 +214,7 @@ export interface Page {
     | HomeBlock01Block
     | HomeBlock02Block
     | HomeBlock03Block
+    | AboutBlock01Block
   )[];
   meta?: {
     title?: string | null;
@@ -1187,6 +1188,45 @@ export interface HomeBlock03Block {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutBlock01Block".
+ */
+export interface AboutBlock01Block {
+  background?: {
+    type?: ('none' | 'preset' | 'custom' | 'image') | null;
+    /**
+     * Theme-aware — adapts automatically to light and dark mode.
+     */
+    presetColor?:
+      | (
+          | 'bg-background text-foreground'
+          | 'bg-card text-card-foreground'
+          | 'bg-popover text-popover-foreground'
+          | 'bg-primary text-primary-foreground'
+          | 'bg-secondary text-secondary-foreground'
+          | 'bg-muted text-muted-foreground'
+          | 'bg-accent text-accent-foreground'
+          | 'bg-destructive text-destructive-foreground'
+        )
+      | null;
+    /**
+     * Any valid CSS color value: hex, rgb(), oklch(), hsl(), etc.
+     */
+    customLight?: string | null;
+    /**
+     * Optional. If left empty, the light color is used in both modes.
+     */
+    customDark?: string | null;
+    /**
+     * Displayed as a full-bleed background behind the block content.
+     */
+    image?: (number | null) | Media;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'aboutBlock01';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1500,6 +1540,7 @@ export interface PagesSelect<T extends boolean = true> {
         homeBlock01?: T | HomeBlock01BlockSelect<T>;
         homeBlock02?: T | HomeBlock02BlockSelect<T>;
         homeBlock03?: T | HomeBlock03BlockSelect<T>;
+        aboutBlock01?: T | AboutBlock01BlockSelect<T>;
       };
   meta?:
     | T
@@ -1759,6 +1800,23 @@ export interface HomeBlock02BlockSelect<T extends boolean = true> {
  * via the `definition` "HomeBlock03Block_select".
  */
 export interface HomeBlock03BlockSelect<T extends boolean = true> {
+  background?:
+    | T
+    | {
+        type?: T;
+        presetColor?: T;
+        customLight?: T;
+        customDark?: T;
+        image?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutBlock01Block_select".
+ */
+export interface AboutBlock01BlockSelect<T extends boolean = true> {
   background?:
     | T
     | {
