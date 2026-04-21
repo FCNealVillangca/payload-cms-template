@@ -71,15 +71,39 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
 
         <div className="hidden md:flex items-center gap-8">
           <div className="flex gap-8 items-center text-sm font-medium">
-            {navItems?.map((item, i) => (
-              <Link
-                key={i}
-                href={item.link?.url || '#'}
-                className="hover:text-blue-800 transition-colors"
-              >
-                {item.link?.label}
-              </Link>
-            ))}
+            {navItems?.map((item, i) => {
+              let href = '#'
+              if (item.link?.type === 'custom' && item.link.url) {
+                href = item.link.url
+              } else if (item.link?.type === 'reference' && item.link.reference) {
+                const ref = item.link.reference
+                if (
+                  ref.relationTo === 'pages' &&
+                  typeof ref.value === 'object' &&
+                  ref.value &&
+                  'slug' in ref.value
+                ) {
+                  href = `/${ref.value.slug}`
+                } else if (
+                  ref.relationTo === 'posts' &&
+                  typeof ref.value === 'object' &&
+                  ref.value &&
+                  'slug' in ref.value
+                ) {
+                  href = `/posts/${ref.value.slug}`
+                }
+              }
+              return (
+                <Link
+                  key={i}
+                  href={href}
+                  className="text-lg font-medium hover:text-blue-800 transition-colors"
+                  onClick={() => setDrawerOpen(false)}
+                >
+                  {item.link?.label}
+                </Link>
+              )
+            })}
           </div>
           <a
             href="#"
@@ -113,16 +137,34 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
             <DrawerTitle className="sr-only">Navigation Menu</DrawerTitle>
             <DrawerDescription className="sr-only">Mobile navigation menu</DrawerDescription>
             <div className="flex flex-col gap-4 p-4">
-              {navItems?.map((item, i) => (
-                <Link
-                  key={i}
-                  href={item.link?.url || '#'}
-                  className="text-lg font-medium hover:text-blue-800 transition-colors"
-                  onClick={() => setDrawerOpen(false)}
-                >
-                  {item.link?.label}
-                </Link>
-              ))}
+              {navItems?.map((item, i) => {
+                let href = '#'
+                if (item.link?.type === 'custom' && item.link.url) {
+                  href = item.link.url
+                } else if (item.link?.type === 'reference' && item.link.reference) {
+                  const ref = item.link.reference
+                  if (
+                    ref.relationTo === 'pages' &&
+                    typeof ref.value === 'object' &&
+                    ref.value &&
+                    'slug' in ref.value
+                  ) {
+                    href = `/${ref.value.slug}`
+                  } else if (
+                    ref.relationTo === 'posts' &&
+                    typeof ref.value === 'object' &&
+                    ref.value &&
+                    'slug' in ref.value
+                  ) {
+                    href = `/posts/${ref.value.slug}`
+                  }
+                }
+                return (
+                  <Link key={i} href={href} className="hover:text-blue-800 transition-colors">
+                    {item.link?.label}
+                  </Link>
+                )
+              })}
               {ctaLink?.url && (
                 <a
                   href={ctaLink.url}
