@@ -15,6 +15,12 @@ import { HomeBlock01Block } from '@/blocks/HomeBlock01/Component'
 import { HomeBlock02Block } from '@/blocks/HomeBlock02/Component'
 import { HomeBlock03Block } from '@/blocks/HomeBlock03/Component'
 import { AboutBlock01Block } from '@/blocks/AboutBlock01/Component'
+import { AboutBlock02Block } from '@/blocks/AboutBlock02/Component'
+import { AboutBlock03Block } from '@/blocks/AboutBlock03/Component'
+import { ExamSupportBlock } from '@/blocks/ExamSupportBlock/Component'
+import { ExamSupportBlock02 } from '@/blocks/ExamSupportBlock02/Component'
+import { ResultsBlock } from '@/blocks/ResultsBlock/Component'
+import { FaqBlock01 } from '@/blocks/FaqBlock01/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -30,6 +36,12 @@ const blockComponents = {
   homeBlock02: HomeBlock02Block,
   homeBlock03: HomeBlock03Block,
   aboutBlock01: AboutBlock01Block,
+  aboutBlock02: AboutBlock02Block,
+  aboutBlock03: AboutBlock03Block,
+  examSupportBlock: ExamSupportBlock,
+  examSupport02: ExamSupportBlock02,
+  resultsBlock: ResultsBlock,
+  faqBlock01: FaqBlock01,
 }
 
 export const RenderBlocks: React.FC<{

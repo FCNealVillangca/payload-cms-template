@@ -159,7 +159,7 @@ export interface Page {
   id: number;
   title: string;
   hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'landing' | 'about';
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'landing' | 'about' | 'examSupport' | 'results';
     richText?: {
       root: {
         type: string;
@@ -215,6 +215,12 @@ export interface Page {
     | HomeBlock02Block
     | HomeBlock03Block
     | AboutBlock01Block
+    | AboutBlock02Block
+    | AboutBlock03Block
+    | ExamSupportBlock
+    | ExamSupportBlock02
+    | ResultsBlock
+    | FaqBlock01
   )[];
   meta?: {
     title?: string | null;
@@ -1227,6 +1233,240 @@ export interface AboutBlock01Block {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutBlock02Block".
+ */
+export interface AboutBlock02Block {
+  background?: {
+    type?: ('none' | 'preset' | 'custom' | 'image') | null;
+    /**
+     * Theme-aware — adapts automatically to light and dark mode.
+     */
+    presetColor?:
+      | (
+          | 'bg-background text-foreground'
+          | 'bg-card text-card-foreground'
+          | 'bg-popover text-popover-foreground'
+          | 'bg-primary text-primary-foreground'
+          | 'bg-secondary text-secondary-foreground'
+          | 'bg-muted text-muted-foreground'
+          | 'bg-accent text-accent-foreground'
+          | 'bg-destructive text-destructive-foreground'
+        )
+      | null;
+    /**
+     * Any valid CSS color value: hex, rgb(), oklch(), hsl(), etc.
+     */
+    customLight?: string | null;
+    /**
+     * Optional. If left empty, the light color is used in both modes.
+     */
+    customDark?: string | null;
+    /**
+     * Displayed as a full-bleed background behind the block content.
+     */
+    image?: (number | null) | Media;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'aboutBlock02';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutBlock03Block".
+ */
+export interface AboutBlock03Block {
+  background?: {
+    type?: ('none' | 'preset' | 'custom' | 'image') | null;
+    /**
+     * Theme-aware — adapts automatically to light and dark mode.
+     */
+    presetColor?:
+      | (
+          | 'bg-background text-foreground'
+          | 'bg-card text-card-foreground'
+          | 'bg-popover text-popover-foreground'
+          | 'bg-primary text-primary-foreground'
+          | 'bg-secondary text-secondary-foreground'
+          | 'bg-muted text-muted-foreground'
+          | 'bg-accent text-accent-foreground'
+          | 'bg-destructive text-destructive-foreground'
+        )
+      | null;
+    /**
+     * Any valid CSS color value: hex, rgb(), oklch(), hsl(), etc.
+     */
+    customLight?: string | null;
+    /**
+     * Optional. If left empty, the light color is used in both modes.
+     */
+    customDark?: string | null;
+    /**
+     * Displayed as a full-bleed background behind the block content.
+     */
+    image?: (number | null) | Media;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'aboutBlock03';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ExamSupportBlock".
+ */
+export interface ExamSupportBlock {
+  background?: {
+    type?: ('none' | 'preset' | 'custom' | 'image') | null;
+    /**
+     * Theme-aware — adapts automatically to light and dark mode.
+     */
+    presetColor?:
+      | (
+          | 'bg-background text-foreground'
+          | 'bg-card text-card-foreground'
+          | 'bg-popover text-popover-foreground'
+          | 'bg-primary text-primary-foreground'
+          | 'bg-secondary text-secondary-foreground'
+          | 'bg-muted text-muted-foreground'
+          | 'bg-accent text-accent-foreground'
+          | 'bg-destructive text-destructive-foreground'
+        )
+      | null;
+    /**
+     * Any valid CSS color value: hex, rgb(), oklch(), hsl(), etc.
+     */
+    customLight?: string | null;
+    /**
+     * Optional. If left empty, the light color is used in both modes.
+     */
+    customDark?: string | null;
+    /**
+     * Displayed as a full-bleed background behind the block content.
+     */
+    image?: (number | null) | Media;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'examSupportBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ExamSupportBlock02".
+ */
+export interface ExamSupportBlock02 {
+  background?: {
+    type?: ('none' | 'preset' | 'custom' | 'image') | null;
+    /**
+     * Theme-aware — adapts automatically to light and dark mode.
+     */
+    presetColor?:
+      | (
+          | 'bg-background text-foreground'
+          | 'bg-card text-card-foreground'
+          | 'bg-popover text-popover-foreground'
+          | 'bg-primary text-primary-foreground'
+          | 'bg-secondary text-secondary-foreground'
+          | 'bg-muted text-muted-foreground'
+          | 'bg-accent text-accent-foreground'
+          | 'bg-destructive text-destructive-foreground'
+        )
+      | null;
+    /**
+     * Any valid CSS color value: hex, rgb(), oklch(), hsl(), etc.
+     */
+    customLight?: string | null;
+    /**
+     * Optional. If left empty, the light color is used in both modes.
+     */
+    customDark?: string | null;
+    /**
+     * Displayed as a full-bleed background behind the block content.
+     */
+    image?: (number | null) | Media;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'examSupport02';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ResultsBlock".
+ */
+export interface ResultsBlock {
+  background?: {
+    type?: ('none' | 'preset' | 'custom' | 'image') | null;
+    /**
+     * Theme-aware — adapts automatically to light and dark mode.
+     */
+    presetColor?:
+      | (
+          | 'bg-background text-foreground'
+          | 'bg-card text-card-foreground'
+          | 'bg-popover text-popover-foreground'
+          | 'bg-primary text-primary-foreground'
+          | 'bg-secondary text-secondary-foreground'
+          | 'bg-muted text-muted-foreground'
+          | 'bg-accent text-accent-foreground'
+          | 'bg-destructive text-destructive-foreground'
+        )
+      | null;
+    /**
+     * Any valid CSS color value: hex, rgb(), oklch(), hsl(), etc.
+     */
+    customLight?: string | null;
+    /**
+     * Optional. If left empty, the light color is used in both modes.
+     */
+    customDark?: string | null;
+    /**
+     * Displayed as a full-bleed background behind the block content.
+     */
+    image?: (number | null) | Media;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'resultsBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FaqBlock01".
+ */
+export interface FaqBlock01 {
+  background?: {
+    type?: ('none' | 'preset' | 'custom' | 'image') | null;
+    /**
+     * Theme-aware — adapts automatically to light and dark mode.
+     */
+    presetColor?:
+      | (
+          | 'bg-background text-foreground'
+          | 'bg-card text-card-foreground'
+          | 'bg-popover text-popover-foreground'
+          | 'bg-primary text-primary-foreground'
+          | 'bg-secondary text-secondary-foreground'
+          | 'bg-muted text-muted-foreground'
+          | 'bg-accent text-accent-foreground'
+          | 'bg-destructive text-destructive-foreground'
+        )
+      | null;
+    /**
+     * Any valid CSS color value: hex, rgb(), oklch(), hsl(), etc.
+     */
+    customLight?: string | null;
+    /**
+     * Optional. If left empty, the light color is used in both modes.
+     */
+    customDark?: string | null;
+    /**
+     * Displayed as a full-bleed background behind the block content.
+     */
+    image?: (number | null) | Media;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'faqBlock01';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1541,6 +1781,12 @@ export interface PagesSelect<T extends boolean = true> {
         homeBlock02?: T | HomeBlock02BlockSelect<T>;
         homeBlock03?: T | HomeBlock03BlockSelect<T>;
         aboutBlock01?: T | AboutBlock01BlockSelect<T>;
+        aboutBlock02?: T | AboutBlock02BlockSelect<T>;
+        aboutBlock03?: T | AboutBlock03BlockSelect<T>;
+        examSupportBlock?: T | ExamSupportBlockSelect<T>;
+        examSupport02?: T | ExamSupportBlock02Select<T>;
+        resultsBlock?: T | ResultsBlockSelect<T>;
+        faqBlock01?: T | FaqBlock01Select<T>;
       };
   meta?:
     | T
@@ -1817,6 +2063,108 @@ export interface HomeBlock03BlockSelect<T extends boolean = true> {
  * via the `definition` "AboutBlock01Block_select".
  */
 export interface AboutBlock01BlockSelect<T extends boolean = true> {
+  background?:
+    | T
+    | {
+        type?: T;
+        presetColor?: T;
+        customLight?: T;
+        customDark?: T;
+        image?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutBlock02Block_select".
+ */
+export interface AboutBlock02BlockSelect<T extends boolean = true> {
+  background?:
+    | T
+    | {
+        type?: T;
+        presetColor?: T;
+        customLight?: T;
+        customDark?: T;
+        image?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutBlock03Block_select".
+ */
+export interface AboutBlock03BlockSelect<T extends boolean = true> {
+  background?:
+    | T
+    | {
+        type?: T;
+        presetColor?: T;
+        customLight?: T;
+        customDark?: T;
+        image?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ExamSupportBlock_select".
+ */
+export interface ExamSupportBlockSelect<T extends boolean = true> {
+  background?:
+    | T
+    | {
+        type?: T;
+        presetColor?: T;
+        customLight?: T;
+        customDark?: T;
+        image?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ExamSupportBlock02_select".
+ */
+export interface ExamSupportBlock02Select<T extends boolean = true> {
+  background?:
+    | T
+    | {
+        type?: T;
+        presetColor?: T;
+        customLight?: T;
+        customDark?: T;
+        image?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ResultsBlock_select".
+ */
+export interface ResultsBlockSelect<T extends boolean = true> {
+  background?:
+    | T
+    | {
+        type?: T;
+        presetColor?: T;
+        customLight?: T;
+        customDark?: T;
+        image?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FaqBlock01_select".
+ */
+export interface FaqBlock01Select<T extends boolean = true> {
   background?:
     | T
     | {

@@ -43,6 +43,14 @@ export const hero: Field = {
           label: 'About',
           value: 'about',
         },
+        {
+          label: 'Exam Support',
+          value: 'examSupport',
+        },
+        {
+          label: 'Results',
+          value: 'results',
+        },
       ],
       required: true,
     },

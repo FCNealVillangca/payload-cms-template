@@ -15,6 +15,12 @@ import { HomeBlock01 } from '../../blocks/HomeBlock01/config'
 import { HomeBlock02 } from '../../blocks/HomeBlock02/config'
 import { HomeBlock03 } from '../../blocks/HomeBlock03/config'
 import { AboutBlock01 } from '../../blocks/AboutBlock01/config'
+import { AboutBlock02 } from '../../blocks/AboutBlock02/config'
+import { AboutBlock03 } from '../../blocks/AboutBlock03/config'
+import { ExamSupportBlock } from '../../blocks/ExamSupportBlock/config'
+import { ExamSupportBlock02 } from '../../blocks/ExamSupportBlock02/config'
+import { ResultsBlock } from '../../blocks/ResultsBlock/config'
+import { FaqBlock01 } from '../../blocks/FaqBlock01/config'
 import { hero } from '@/heros/config'
 import { slugField } from 'payload'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -94,6 +100,12 @@ export const Pages: CollectionConfig<'pages'> = {
                 HomeBlock02,
                 HomeBlock03,
                 AboutBlock01,
+                AboutBlock02,
+                AboutBlock03,
+                ExamSupportBlock,
+                ExamSupportBlock02,
+                ResultsBlock,
+                FaqBlock01,
               ],
               required: true,
               admin: {
