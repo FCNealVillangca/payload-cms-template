@@ -19,8 +19,9 @@ import { AboutHeroBlock } from '../../blocks/AboutHeroBlock/config'
 import { AboutBlock01 } from '../../blocks/AboutBlock01/config'
 import { AboutBlock02 } from '../../blocks/AboutBlock02/config'
 import { AboutBlock03 } from '../../blocks/AboutBlock03/config'
-import { ExamSupportBlock } from '../../blocks/ExamSupportBlock/config'
-import { ExamSupportBlock02 } from '../../blocks/ExamSupportBlock02/config'
+import { ExamBlock01 } from '../../blocks/examBlock01/config'
+import { ExamBlock02 } from '../../blocks/examBlock02/config'
+import { ExamHeroBlock } from '../../blocks/examHeroBlock/config'
 import { ResultsBlock } from '../../blocks/ResultsBlock/config'
 import { FaqBlock01 } from '../../blocks/FaqBlock01/config'
 import { hero } from '@/heros/config'
@@ -103,11 +104,12 @@ export const Pages: CollectionConfig<'pages'> = {
                 HomeBlock03,
                 HomeHeroBlock,
                 AboutHeroBlock,
+                ExamHeroBlock,
                 AboutBlock01,
                 AboutBlock02,
                 AboutBlock03,
-                ExamSupportBlock,
-                ExamSupportBlock02,
+                ExamBlock01,
+                ExamBlock02,
                 ResultsBlock,
                 FaqBlock01,
               ],

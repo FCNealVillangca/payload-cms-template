@@ -4,12 +4,14 @@ export const backgroundField: Field = {
   name: 'background',
   type: 'group',
   label: 'Background',
+  dbName: 'bg',
   fields: [
     {
       name: 'type',
       type: 'select',
       label: 'Background Type',
       defaultValue: 'none',
+      dbName: 'type',
       options: [
         { label: 'None', value: 'none' },
         { label: 'Preset Color', value: 'preset' },
@@ -18,12 +20,13 @@ export const backgroundField: Field = {
       ],
     },
 
-    // ── Preset ───────────────────────────────────────────────────────────────
+    // ── Preset ───────────────────────────────────────────────────────
     {
       name: 'presetColor',
       type: 'select',
       label: 'Color',
       defaultValue: 'bg-muted text-muted-foreground',
+      dbName: 'preset',
       options: [
         { label: 'Background', value: 'bg-background text-foreground' },
         { label: 'Card', value: 'bg-card text-card-foreground' },
@@ -40,11 +43,12 @@ export const backgroundField: Field = {
       },
     },
 
-    // ── Custom ───────────────────────────────────────────────────────────────
+    // ── Custom ───────────────────────────────────────────────────────
     {
       name: 'customLight',
       type: 'text',
       label: 'Color — Light Mode',
+      dbName: 'customL',
       admin: {
         condition: (_, siblingData) => siblingData?.type === 'custom',
         placeholder: '#f5f0e8',
@@ -55,6 +59,7 @@ export const backgroundField: Field = {
       name: 'customDark',
       type: 'text',
       label: 'Color — Dark Mode',
+      dbName: 'customD',
       admin: {
         condition: (_, siblingData) => siblingData?.type === 'custom',
         placeholder: '#2a2520',
@@ -62,12 +67,13 @@ export const backgroundField: Field = {
       },
     },
 
-    // ── Image ────────────────────────────────────────────────────────────────
+    // ── Image ────────────────────────────────────────────────────────
     {
       name: 'image',
       type: 'upload',
       relationTo: 'media',
       label: 'Image',
+      dbName: 'img',
       admin: {
         condition: (_, siblingData) => siblingData?.type === 'image',
         description: 'Displayed as a full-bleed background behind the block content.',

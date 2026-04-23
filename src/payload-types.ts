@@ -219,11 +219,12 @@ export interface Page {
     | HomeBlock03Block
     | HomeHeroBlock
     | AboutHeroBlock
+    | ExamHeroBlock
     | AboutBlock01Block
     | AboutBlock02Block
     | AboutBlock03Block
-    | ExamSupportBlock
-    | ExamSupportBlock02
+    | ExamBlock01
+    | ExamBlock02
     | ResultsBlock
     | FaqBlock01
   )[];
@@ -1357,6 +1358,73 @@ export interface AboutHeroBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ExamHeroBlock".
+ */
+export interface ExamHeroBlock {
+  title?: string | null;
+  titleHighlight?: string | null;
+  description?: string | null;
+  links?:
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+          label: string;
+          /**
+           * Choose how the link should be rendered.
+           */
+          appearance?: ('default' | 'outline') | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  confidenceLevel?: number | null;
+  background?: {
+    type?: ('none' | 'preset' | 'custom' | 'image') | null;
+    /**
+     * Theme-aware — adapts automatically to light and dark mode.
+     */
+    presetColor?:
+      | (
+          | 'bg-background text-foreground'
+          | 'bg-card text-card-foreground'
+          | 'bg-popover text-popover-foreground'
+          | 'bg-primary text-primary-foreground'
+          | 'bg-secondary text-secondary-foreground'
+          | 'bg-muted text-muted-foreground'
+          | 'bg-accent text-accent-foreground'
+          | 'bg-destructive text-destructive-foreground'
+        )
+      | null;
+    /**
+     * Any valid CSS color value: hex, rgb(), oklch(), hsl(), etc.
+     */
+    customLight?: string | null;
+    /**
+     * Optional. If left empty, the light color is used in both modes.
+     */
+    customDark?: string | null;
+    /**
+     * Displayed as a full-bleed background behind the block content.
+     */
+    image?: (number | null) | Media;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'examHeroBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "AboutBlock01Block".
  */
 export interface AboutBlock01Block {
@@ -1514,9 +1582,9 @@ export interface AboutBlock03Block {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ExamSupportBlock".
+ * via the `definition` "ExamBlock01".
  */
-export interface ExamSupportBlock {
+export interface ExamBlock01 {
   background?: {
     type?: ('none' | 'preset' | 'custom' | 'image') | null;
     /**
@@ -1547,15 +1615,27 @@ export interface ExamSupportBlock {
      */
     image?: (number | null) | Media;
   };
+  label?: string | null;
+  title?: string | null;
+  programmes?:
+    | {
+        title: string;
+        description: string;
+        icon?: ('target' | 'award' | 'mic' | 'book' | 'graduationCap') | null;
+        color?: ('text-blue-600' | 'text-red-600' | 'text-slate-900' | 'text-green-600') | null;
+        bgColor?: ('bg-blue-50' | 'bg-red-50' | 'bg-slate-100' | 'bg-green-50') | null;
+        id?: string | null;
+      }[]
+    | null;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'examSupportBlock';
+  blockType: 'examBlock01';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ExamSupportBlock02".
+ * via the `definition` "ExamBlock02".
  */
-export interface ExamSupportBlock02 {
+export interface ExamBlock02 {
   background?: {
     type?: ('none' | 'preset' | 'custom' | 'image') | null;
     /**
@@ -1586,9 +1666,27 @@ export interface ExamSupportBlock02 {
      */
     image?: (number | null) | Media;
   };
+  title?: string | null;
+  description?: string | null;
+  steps?:
+    | {
+        id: string;
+        title: string;
+        description: string;
+      }[]
+    | null;
+  examBoardsTitle?: string | null;
+  examBoards?:
+    | {
+        name: string;
+        sub: string;
+        id?: string | null;
+      }[]
+    | null;
+  buttonText?: string | null;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'examSupport02';
+  blockType: 'examBlock02';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1988,11 +2086,12 @@ export interface PagesSelect<T extends boolean = true> {
         homeBlock03?: T | HomeBlock03BlockSelect<T>;
         homeHeroBlock?: T | HomeHeroBlockSelect<T>;
         aboutHeroBlock?: T | AboutHeroBlockSelect<T>;
+        examHeroBlock?: T | ExamHeroBlockSelect<T>;
         aboutBlock01?: T | AboutBlock01BlockSelect<T>;
         aboutBlock02?: T | AboutBlock02BlockSelect<T>;
         aboutBlock03?: T | AboutBlock03BlockSelect<T>;
-        examSupportBlock?: T | ExamSupportBlockSelect<T>;
-        examSupport02?: T | ExamSupportBlock02Select<T>;
+        examBlock01?: T | ExamBlock01Select<T>;
+        examBlock02?: T | ExamBlock02Select<T>;
         resultsBlock?: T | ResultsBlockSelect<T>;
         faqBlock01?: T | FaqBlock01Select<T>;
       };
@@ -2377,6 +2476,42 @@ export interface AboutHeroBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ExamHeroBlock_select".
+ */
+export interface ExamHeroBlockSelect<T extends boolean = true> {
+  title?: T;
+  titleHighlight?: T;
+  description?: T;
+  links?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
+            };
+        id?: T;
+      };
+  confidenceLevel?: T;
+  background?:
+    | T
+    | {
+        type?: T;
+        presetColor?: T;
+        customLight?: T;
+        customDark?: T;
+        image?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "AboutBlock01Block_select".
  */
 export interface AboutBlock01BlockSelect<T extends boolean = true> {
@@ -2468,9 +2603,9 @@ export interface AboutBlock03BlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ExamSupportBlock_select".
+ * via the `definition` "ExamBlock01_select".
  */
-export interface ExamSupportBlockSelect<T extends boolean = true> {
+export interface ExamBlock01Select<T extends boolean = true> {
   background?:
     | T
     | {
@@ -2479,15 +2614,27 @@ export interface ExamSupportBlockSelect<T extends boolean = true> {
         customLight?: T;
         customDark?: T;
         image?: T;
+      };
+  label?: T;
+  title?: T;
+  programmes?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        icon?: T;
+        color?: T;
+        bgColor?: T;
+        id?: T;
       };
   id?: T;
   blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ExamSupportBlock02_select".
+ * via the `definition` "ExamBlock02_select".
  */
-export interface ExamSupportBlock02Select<T extends boolean = true> {
+export interface ExamBlock02Select<T extends boolean = true> {
   background?:
     | T
     | {
@@ -2497,6 +2644,24 @@ export interface ExamSupportBlock02Select<T extends boolean = true> {
         customDark?: T;
         image?: T;
       };
+  title?: T;
+  description?: T;
+  steps?:
+    | T
+    | {
+        id?: T;
+        title?: T;
+        description?: T;
+      };
+  examBoardsTitle?: T;
+  examBoards?:
+    | T
+    | {
+        name?: T;
+        sub?: T;
+        id?: T;
+      };
+  buttonText?: T;
   id?: T;
   blockName?: T;
 }

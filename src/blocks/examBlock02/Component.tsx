@@ -1,40 +1,58 @@
 import React from 'react'
 import { ArrowRight } from 'lucide-react'
-import type { ExamSupportBlock02 as ExamSupportBlock02Props } from '@/payload-types'
+import type { ExamBlock02 as ExamBlock02Props } from '@/payload-types'
 import { Media } from '@/components/Media'
 import { getBackgroundClass, getCustomBackgroundCSS } from '@/utilities/getBackground'
 import { cn } from '@/utilities/ui'
 
-export const ExamSupportBlock02: React.FC<ExamSupportBlock02Props> = ({ id, background }) => {
-  const steps = [
-    {
-      id: 'STEP 1',
-      title: 'Free speaking assessment',
-      description: 'Understand your level and where you lose marks',
-    },
-    {
-      id: 'STEP 2',
-      title: 'Clear learning plan',
-      description: 'Know exactly what to improve and how',
-    },
-    {
-      id: 'STEP 3',
-      title: 'Structured weekly sessions',
-      description: 'Build confidence and perform under exam conditions',
-    },
-  ]
+const defaultSteps = [
+  {
+    id: 'STEP 1',
+    title: 'Free speaking assessment',
+    description: 'Understand your level and where you lose marks',
+  },
+  {
+    id: 'STEP 2',
+    title: 'Clear learning plan',
+    description: 'Know exactly what to improve and how',
+  },
+  {
+    id: 'STEP 3',
+    title: 'Structured weekly sessions',
+    description: 'Build confidence and perform under exam conditions',
+  },
+]
 
-  const boards = [
-    { name: 'AQA', sub: 'GCSE AND A LEVEL' },
-    { name: 'Edexcel', sub: 'GCSE AND A LEVEL' },
-    { name: 'OCR', sub: 'GCSE AND A LEVEL' },
-    { name: 'Eduqas', sub: 'GCSE' },
-  ]
+const defaultBoards = [
+  { name: 'AQA', sub: 'GCSE AND A LEVEL' },
+  { name: 'Edexcel', sub: 'GCSE AND A LEVEL' },
+  { name: 'OCR', sub: 'GCSE AND A LEVEL' },
+  { name: 'Eduqas', sub: 'GCSE' },
+]
 
+export const ExamBlock02: React.FC<ExamBlock02Props> = ({
+  id,
+  background,
+  title,
+  description,
+  steps,
+  examBoardsTitle,
+  examBoards,
+  buttonText,
+}) => {
   const isImage = background?.type === 'image' && background.image
   const presetClass = getBackgroundClass(background)
   const customCSS = getCustomBackgroundCSS(background, id)
   const sectionId = background?.type === 'custom' && id ? `block-bg-${id}` : undefined
+
+  const displayTitle = title || 'Your path to exam confidence'
+  const displayDescription =
+    description ||
+    'We start with a clear assessment to understand your level and identify exactly what needs to improve.'
+  const displaySteps = steps && steps.length > 0 ? steps : defaultSteps
+  const displayExamBoardsTitle = examBoardsTitle || 'Aligned with your exam board'
+  const displayExamBoards = examBoards && examBoards.length > 0 ? examBoards : defaultBoards
+  const displayButtonText = buttonText || 'Start your free speaking assessment'
 
   return (
     <section
@@ -53,17 +71,21 @@ export const ExamSupportBlock02: React.FC<ExamSupportBlock02Props> = ({ id, back
           <div className="flex flex-col gap-12">
             <div className="flex flex-col gap-6">
               <h2 className="text-5xl md:text-6xl font-serif text-slate-900 leading-tight">
-                Your path to exam <br /> confidence
+                {displayTitle.split('exam confidence').map((part, index, array) => (
+                  <React.Fragment key={index}>
+                    {part}
+                    {index < array.length - 1 && <span className="italic">exam confidence</span>}
+                  </React.Fragment>
+                ))}
               </h2>
               <p className="text-lg text-slate-500 leading-relaxed max-w-md">
-                We start with a clear assessment to understand your level and identify exactly what
-                needs to improve.
+                {displayDescription}
               </p>
             </div>
 
             <div className="flex flex-col gap-10">
-              {steps.map((step, idx) => (
-                <div key={step.id} className="flex flex-col gap-2">
+              {displaySteps.map((step, idx) => (
+                <div key={step.id || idx} className="flex flex-col gap-2">
                   <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-300">
                     {step.id}
                   </span>
@@ -80,13 +102,13 @@ export const ExamSupportBlock02: React.FC<ExamSupportBlock02Props> = ({ id, back
           <div className="relative">
             <div className="bg-[#fafafa] rounded-[48px] p-8 md:p-14 border border-slate-50 shadow-2xl shadow-slate-100/50">
               <h3 className="text-2xl font-serif text-slate-900 mb-10 text-center md:text-left">
-                Aligned with your exam board
+                {displayExamBoardsTitle}
               </h3>
 
               <div className="grid grid-cols-2 gap-4 mb-12">
-                {boards.map((board, idx) => (
+                {displayExamBoards.map((board, idx) => (
                   <div
-                    key={board.name}
+                    key={board.name || idx}
                     className="bg-white p-6 rounded-2xl border border-slate-100/60 shadow-sm flex flex-col items-center justify-center text-center group hover:border-blue-200 transition-colors cursor-default"
                   >
                     <span className="text-xl font-black text-slate-800 mb-1">{board.name}</span>
@@ -98,7 +120,7 @@ export const ExamSupportBlock02: React.FC<ExamSupportBlock02Props> = ({ id, back
               </div>
 
               <button className="w-full bg-[#1a1a1a] text-white py-5 rounded-2xl font-bold text-sm flex items-center justify-center gap-3 transition-all hover:bg-black hover:scale-[1.01] active:scale-[0.99] shadow-xl shadow-black/10">
-                Start your free speaking assessment
+                {displayButtonText}
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
