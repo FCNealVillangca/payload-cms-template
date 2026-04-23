@@ -218,6 +218,7 @@ export interface Page {
     | HomeBlock02Block
     | HomeBlock03Block
     | HomeHeroBlock
+    | AboutHeroBlock
     | AboutBlock01Block
     | AboutBlock02Block
     | AboutBlock03Block
@@ -1114,6 +1115,14 @@ export interface HomeBlock01Block {
      */
     image?: (number | null) | Media;
   };
+  title?: string | null;
+  struggles?:
+    | {
+        title: string;
+        description: string;
+        id?: string | null;
+      }[]
+    | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'homeBlock01';
@@ -1153,6 +1162,14 @@ export interface HomeBlock02Block {
      */
     image?: (number | null) | Media;
   };
+  title?: string | null;
+  steps?:
+    | {
+        title: string;
+        description: string;
+        id?: string | null;
+      }[]
+    | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'homeBlock02';
@@ -1191,6 +1208,35 @@ export interface HomeBlock03Block {
      * Displayed as a full-bleed background behind the block content.
      */
     image?: (number | null) | Media;
+  };
+  title?: string | null;
+  highlightedTitle?: string | null;
+  paragraphs?:
+    | {
+        text?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  features?:
+    | {
+        title?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  buttonText?: string | null;
+  buttonSubtext?: string | null;
+  beforeCard?: {
+    label?: string | null;
+    text?: string | null;
+    speaker?: string | null;
+    subtitle?: string | null;
+  };
+  afterCard?: {
+    label?: string | null;
+    text?: string | null;
+    speaker?: string | null;
+    subtitle?: string | null;
   };
   id?: string | null;
   blockName?: string | null;
@@ -1265,6 +1311,52 @@ export interface HomeHeroBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutHeroBlock".
+ */
+export interface AboutHeroBlock {
+  badge?: string | null;
+  title?: string | null;
+  titleHighlight?: string | null;
+  description?: string | null;
+  media?: (number | null) | Media;
+  floatingCardTitle?: string | null;
+  floatingCardDescription?: string | null;
+  background?: {
+    type?: ('none' | 'preset' | 'custom' | 'image') | null;
+    /**
+     * Theme-aware — adapts automatically to light and dark mode.
+     */
+    presetColor?:
+      | (
+          | 'bg-background text-foreground'
+          | 'bg-card text-card-foreground'
+          | 'bg-popover text-popover-foreground'
+          | 'bg-primary text-primary-foreground'
+          | 'bg-secondary text-secondary-foreground'
+          | 'bg-muted text-muted-foreground'
+          | 'bg-accent text-accent-foreground'
+          | 'bg-destructive text-destructive-foreground'
+        )
+      | null;
+    /**
+     * Any valid CSS color value: hex, rgb(), oklch(), hsl(), etc.
+     */
+    customLight?: string | null;
+    /**
+     * Optional. If left empty, the light color is used in both modes.
+     */
+    customDark?: string | null;
+    /**
+     * Displayed as a full-bleed background behind the block content.
+     */
+    image?: (number | null) | Media;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'aboutHeroBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "AboutBlock01Block".
  */
 export interface AboutBlock01Block {
@@ -1298,6 +1390,20 @@ export interface AboutBlock01Block {
      */
     image?: (number | null) | Media;
   };
+  title?: string | null;
+  highlightedWord?: string | null;
+  subtitle?: string | null;
+  description?: string | null;
+  highlightText?: string | null;
+  cards?:
+    | {
+        title: string;
+        description: string;
+        icon?: ('messageSquare' | 'zap' | 'target' | 'trendingUp') | null;
+        style?: ('blue' | 'white' | 'dark') | null;
+        id?: string | null;
+      }[]
+    | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'aboutBlock01';
@@ -1337,6 +1443,20 @@ export interface AboutBlock02Block {
      */
     image?: (number | null) | Media;
   };
+  badge?: string | null;
+  title?: string | null;
+  cards?:
+    | {
+        title: string;
+        description: string;
+        icon?: ('layers' | 'megaphone' | 'trendingUp' | 'messageSquare' | 'zap' | 'target') | null;
+        style?: ('white' | 'blue') | null;
+        id?: string | null;
+      }[]
+    | null;
+  quote?: string | null;
+  quoteHighlight?: string | null;
+  ctaText?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'aboutBlock02';
@@ -1376,6 +1496,18 @@ export interface AboutBlock03Block {
      */
     image?: (number | null) | Media;
   };
+  badge?: string | null;
+  title?: string | null;
+  description?: string | null;
+  features?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  goalLabel?: string | null;
+  goalText?: string | null;
+  tutorImage?: (number | null) | Media;
   id?: string | null;
   blockName?: string | null;
   blockType: 'aboutBlock03';
@@ -1855,6 +1987,7 @@ export interface PagesSelect<T extends boolean = true> {
         homeBlock02?: T | HomeBlock02BlockSelect<T>;
         homeBlock03?: T | HomeBlock03BlockSelect<T>;
         homeHeroBlock?: T | HomeHeroBlockSelect<T>;
+        aboutHeroBlock?: T | AboutHeroBlockSelect<T>;
         aboutBlock01?: T | AboutBlock01BlockSelect<T>;
         aboutBlock02?: T | AboutBlock02BlockSelect<T>;
         aboutBlock03?: T | AboutBlock03BlockSelect<T>;
@@ -2096,6 +2229,14 @@ export interface HomeBlock01BlockSelect<T extends boolean = true> {
         customDark?: T;
         image?: T;
       };
+  title?: T;
+  struggles?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
@@ -2113,6 +2254,14 @@ export interface HomeBlock02BlockSelect<T extends boolean = true> {
         customDark?: T;
         image?: T;
       };
+  title?: T;
+  steps?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
@@ -2129,6 +2278,39 @@ export interface HomeBlock03BlockSelect<T extends boolean = true> {
         customLight?: T;
         customDark?: T;
         image?: T;
+      };
+  title?: T;
+  highlightedTitle?: T;
+  paragraphs?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  features?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  buttonText?: T;
+  buttonSubtext?: T;
+  beforeCard?:
+    | T
+    | {
+        label?: T;
+        text?: T;
+        speaker?: T;
+        subtitle?: T;
+      };
+  afterCard?:
+    | T
+    | {
+        label?: T;
+        text?: T;
+        speaker?: T;
+        subtitle?: T;
       };
   id?: T;
   blockName?: T;
@@ -2171,6 +2353,30 @@ export interface HomeHeroBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutHeroBlock_select".
+ */
+export interface AboutHeroBlockSelect<T extends boolean = true> {
+  badge?: T;
+  title?: T;
+  titleHighlight?: T;
+  description?: T;
+  media?: T;
+  floatingCardTitle?: T;
+  floatingCardDescription?: T;
+  background?:
+    | T
+    | {
+        type?: T;
+        presetColor?: T;
+        customLight?: T;
+        customDark?: T;
+        image?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "AboutBlock01Block_select".
  */
 export interface AboutBlock01BlockSelect<T extends boolean = true> {
@@ -2182,6 +2388,20 @@ export interface AboutBlock01BlockSelect<T extends boolean = true> {
         customLight?: T;
         customDark?: T;
         image?: T;
+      };
+  title?: T;
+  highlightedWord?: T;
+  subtitle?: T;
+  description?: T;
+  highlightText?: T;
+  cards?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        icon?: T;
+        style?: T;
+        id?: T;
       };
   id?: T;
   blockName?: T;
@@ -2200,6 +2420,20 @@ export interface AboutBlock02BlockSelect<T extends boolean = true> {
         customDark?: T;
         image?: T;
       };
+  badge?: T;
+  title?: T;
+  cards?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        icon?: T;
+        style?: T;
+        id?: T;
+      };
+  quote?: T;
+  quoteHighlight?: T;
+  ctaText?: T;
   id?: T;
   blockName?: T;
 }
@@ -2217,6 +2451,18 @@ export interface AboutBlock03BlockSelect<T extends boolean = true> {
         customDark?: T;
         image?: T;
       };
+  badge?: T;
+  title?: T;
+  description?: T;
+  features?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  goalLabel?: T;
+  goalText?: T;
+  tutorImage?: T;
   id?: T;
   blockName?: T;
 }

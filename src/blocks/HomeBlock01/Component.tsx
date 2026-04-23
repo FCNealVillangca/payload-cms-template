@@ -5,8 +5,13 @@ import { Media } from '@/components/Media'
 import { getBackgroundClass, getCustomBackgroundCSS } from '@/utilities/getBackground'
 import { cn } from '@/utilities/ui'
 
-export const HomeBlock01Block: React.FC<HomeBlock01BlockProps> = ({ id, background }) => {
-  const struggles = [
+export const HomeBlock01Block: React.FC<HomeBlock01BlockProps> = ({
+  id,
+  background,
+  title,
+  struggles,
+}) => {
+  const defaultStruggles = [
     {
       icon: <TrendingDown className="w-10 h-10 text-red-500" />,
       title: 'Falling behind in French',
@@ -31,6 +36,17 @@ export const HomeBlock01Block: React.FC<HomeBlock01BlockProps> = ({ id, backgrou
     },
   ]
 
+  const displayTitle = title || 'Your child might be struggling with French if...'
+  const displayStruggles =
+    struggles && struggles.length > 0
+      ? struggles.map((struggle, index) => ({
+          ...struggle,
+          icon: defaultStruggles[index]?.icon || (
+            <AlertTriangle className="w-10 h-10 text-gray-500" />
+          ),
+        }))
+      : defaultStruggles
+
   const isImage = background?.type === 'image' && background.image
   const presetClass = getBackgroundClass(background)
   const customCSS = getCustomBackgroundCSS(background, id)
@@ -51,13 +67,13 @@ export const HomeBlock01Block: React.FC<HomeBlock01BlockProps> = ({ id, backgrou
         {/* Section Heading */}
         <div className="text-center mb-16 max-w-3xl mx-auto">
           <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-slate-900 leading-[1.1]">
-            Your child might be struggling with French if...
+            {displayTitle}
           </h2>
         </div>
 
         {/* Struggles Grid - Centered & Open Design */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
-          {struggles.map((struggle, index) => (
+          {displayStruggles.map((struggle, index) => (
             <div key={index} className="flex flex-col items-center text-center group">
               {/* Large, Centered Icon Container */}
               <div className="w-24 h-24 rounded-3xl bg-slate-50 flex items-center justify-center mb-8 group-hover:bg-blue-50 group-hover:scale-110 transition-all duration-500 ease-spring">
