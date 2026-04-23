@@ -1762,6 +1762,16 @@ export interface FaqBlock01 {
      */
     image?: (number | null) | Media;
   };
+  title?: string | null;
+  description?: string | null;
+  faqs?:
+    | {
+        question: string;
+        answer: string;
+        id?: string | null;
+      }[]
+    | null;
+  showContact?: boolean | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'faqBlock01';
@@ -2696,6 +2706,16 @@ export interface FaqBlock01Select<T extends boolean = true> {
         customDark?: T;
         image?: T;
       };
+  title?: T;
+  description?: T;
+  faqs?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
+        id?: T;
+      };
+  showContact?: T;
   id?: T;
   blockName?: T;
 }

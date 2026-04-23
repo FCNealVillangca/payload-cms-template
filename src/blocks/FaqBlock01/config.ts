@@ -1,11 +1,120 @@
 import type { Block } from 'payload'
 
-import { backgroundField } from '../../fields/background'
-
 export const FaqBlock01: Block = {
   slug: 'faqBlock01',
   interfaceName: 'FaqBlock01',
-  fields: [backgroundField],
+  fields: [
+    {
+      name: 'background',
+      type: 'group',
+      label: 'Background',
+      dbName: 'bg',
+      fields: [
+        {
+          name: 'type',
+          type: 'select',
+          label: 'Background Type',
+          defaultValue: 'none',
+          dbName: 'type',
+          options: [
+            { label: 'None', value: 'none' },
+            { label: 'Preset Color', value: 'preset' },
+            { label: 'Custom Color', value: 'custom' },
+            { label: 'Image', value: 'image' },
+          ],
+        },
+        {
+          name: 'presetColor',
+          type: 'select',
+          label: 'Color',
+          defaultValue: 'bg-muted text-muted-foreground',
+          dbName: 'preset',
+          options: [
+            { label: 'Background', value: 'bg-background text-foreground' },
+            { label: 'Card', value: 'bg-card text-card-foreground' },
+            { label: 'Popover', value: 'bg-popover text-popover-foreground' },
+            { label: 'Primary', value: 'bg-primary text-primary-foreground' },
+            { label: 'Secondary', value: 'bg-secondary text-secondary-foreground' },
+            { label: 'Muted', value: 'bg-muted text-muted-foreground' },
+            { label: 'Accent', value: 'bg-accent text-accent-foreground' },
+            { label: 'Destructive', value: 'bg-destructive text-destructive-foreground' },
+          ],
+          admin: {
+            condition: (_, siblingData) => siblingData?.type === 'preset',
+            description: 'Theme-aware — adapts automatically to light and dark mode.',
+          },
+        },
+        {
+          name: 'customLight',
+          type: 'text',
+          label: 'Color — Light Mode',
+          dbName: 'customL',
+          admin: {
+            condition: (_, siblingData) => siblingData?.type === 'custom',
+            placeholder: '#f5f0e8',
+            description: 'Any valid CSS color value: hex, rgb(), oklch(), hsl(), etc.',
+          },
+        },
+        {
+          name: 'customDark',
+          type: 'text',
+          label: 'Color — Dark Mode',
+          dbName: 'customD',
+          admin: {
+            condition: (_, siblingData) => siblingData?.type === 'custom',
+            placeholder: '#2a2520',
+            description: 'Optional. If left empty, the light color is used in both modes.',
+          },
+        },
+        {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+          label: 'Image',
+          dbName: 'img',
+          admin: {
+            condition: (_, siblingData) => siblingData?.type === 'image',
+            description: 'Displayed as a full-bleed background behind the block content.',
+          },
+        },
+      ],
+    },
+    {
+      name: 'title',
+      type: 'text',
+      label: 'Title',
+    },
+    {
+      name: 'description',
+      type: 'textarea',
+      label: 'Description',
+    },
+    {
+      name: 'faqs',
+      type: 'array',
+      label: 'FAQs',
+      fields: [
+        {
+          name: 'question',
+          type: 'text',
+          required: true,
+          label: 'Question',
+        },
+        {
+          name: 'answer',
+          type: 'textarea',
+          required: true,
+          label: 'Answer',
+        },
+      ],
+    },
+    {
+      name: 'showContact',
+      type: 'checkbox',
+      label: 'Show Contact Section',
+      defaultValue: true,
+    },
+  ],
   labels: {
     plural: 'FAQ Block 01',
     singular: 'FAQ Block 01',
